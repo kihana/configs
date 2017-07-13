@@ -1,0 +1,144 @@
+" Open vim by default
+set vicmd=vim
+
+" Selected color scheme
+colorscheme Default
+
+" Show hidden files
+windo normal! zo
+
+" Run executable file rather than open them for editing
+set norunexec
+
+" The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
+" Unless it exists with write/exec permissions set, vifm will attempt to
+" create it.
+
+set fusehome=/tmp/vifm_FUSE
+
+" Show list of matches on tab completion in command-line mode
+
+set wildmenu
+
+" Maximum number of changes that can be undone.
+
+set undolevels=100
+
+" Set visible columns
+set viewcolumns=*{name},6{ext},7{size},16{mtime}
+
+"----------------------------- Hot keys -------------------------------------
+
+" Hide vifm and show shell
+" nnoremap <C-O> :shell<CR>
+
+" Yank current directory path into the clipboard
+nnoremap yd :!echo -n %d | xclip %i<CR>
+
+" Yank current file path into the clipboard
+nnoremap yf :!echo -n %c:p | xclip %i<CR>
+
+" Yank current selected item name into the clipboard
+nnoremap yn :!echo -n %f | xclip %i<CR>
+
+" General operation
+nnoremap <F3> :!less %f<CR>
+nnoremap <F4> :edit<CR>
+nnoremap <F5> :copy<CR>
+nnoremap <F6> :move<CR>
+nnoremap <F7> :mkdir<SPACE>
+nnoremap <F8> :delete<CR>
+nnoremap <S-F4> :touch<SPACE>
+nnoremap <S-F6> cw<C-A>
+
+" Ignore case in search patterns unless it contains at least one uppercase
+" letter
+
+set ignorecase
+set smartcase
+
+" Don't highlight search results automatically
+
+set nohlsearch
+
+" Use increment searching (search while typing)
+set incsearch
+
+" Format for displaying time in file list
+set timefmt=%d.%m.%y\ %H:%M
+
+" What should be saved automatically between vifm runs
+set vifminfo=tui,dhistory,state,savedirs,chistory,shistory,bookmarks
+
+
+" -------------------------------------------------------------------------
+" File extensions
+
+" Rar2FsMount and rar archives
+filetype *.rar
+       \ {Mount with rar2fs}
+       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+fileviewer *.rar unrar v %c
+
+" ArchiveMount
+filetype *.tar.bz2,*.tbz2,*.tgz,*.tar.gz
+       \ {Mount with archivemount}
+       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+fileviewer *.tgz,*.tar.gz tar -tzf %c
+fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
+
+" FuseZipMount
+filetype *.zip,*.jar,*.war,*.ear,*.oxt
+       \ {Mount with fuse-zip}
+       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+       \ {View contents}
+       \ zip -sf %c | less,
+       \ {Extract here}
+       \ tar -xf %c,
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
+" Image
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in lximage-qt}
+        \ lximage-qt %c > /dev/null 2>&1 &,
+        \ {View in sxiv}
+        \ sxiv,
+        \ {View in gpicview}
+        \ gpicview %c,
+        \ {View in shotwell}
+        \ shotwell,
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+
+" SshMount
+filetype *.ssh
+       \ {Mount with sshfs}
+       \ FUSE_MOUNT2|sshfs %FOREGROUND %PARAM %DESTINATION_DIR,
+
+" Pdf
+filextype *.pdf qpdfview %c &, apvlv %c, xpdf %c
+fileviewer *.pdf pdftotext -nopgbrk %c -
+
+" EPS
+filextype *.eps
+        \ {View in gimp}
+        \ gimp %c > /dev/null 2>&1 &,
+        \ {View in gv}
+        \ gv %c %i &,
+
+" Video
+filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
+        \ {View using mpv}
+        \ mpv %c > /dev/null 2>&1 &,
+				\ {View using ffplay}
+        \ ffplay -fs %c,
+        \ {View using Dragon}
+        \ dragon %f,
+        \ {View using mplayer}
+        \ mplayer %f,
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
+         \ ffprobe -pretty %c 2>&1
+
+" Office files
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+fileviewer *.doc catdoc %c
+fileviewer *.docx, docx2txt.pl %f -

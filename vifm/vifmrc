@@ -168,7 +168,7 @@ command! reload :write | restart
 " program.
 
 " Pdf
-filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
+filextype *.pdf qpdfview %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
@@ -198,6 +198,8 @@ fileviewer *.flac soxi
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
          \*.as[fx]
+        \ {View using mpv}
+        \ mpv %c > /dev/null 2>&1 &,
         \ {View using ffplay}
         \ ffplay -fs %f,
         \ {View using Dragon}
@@ -228,6 +230,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in lximage-qt}
+        \ lximage-qt %c > /dev/null 2>&1 &,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -286,18 +290,6 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ tar -xf %c,
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
-" Image
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in lximage-qt}
-        \ lximage-qt %c > /dev/null 2>&1 &,
-        \ {View in sxiv}
-        \ sxiv,
-        \ {View in gpicview}
-        \ gpicview %c,
-        \ {View in shotwell}
-        \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
-
 " EPS
 filextype *.eps
         \ {View in gimp}
@@ -305,19 +297,6 @@ filextype *.eps
         \ {View in gv}
         \ gv %c %i &,
 
-" Video
-filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
-        \ {View using mpv}
-        \ mpv %c > /dev/null 2>&1 &,
-				\ {View using ffplay}
-        \ ffplay -fs %c,
-        \ {View using Dragon}
-        \ dragon %f,
-        \ {View using mplayer}
-        \ mplayer %f,
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
-         \ ffprobe -pretty %c 2>&1        
-        
 " ArchiveMount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Mount with archivemount}
@@ -358,10 +337,6 @@ fileviewer *.7z 7z l %c
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx start %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
-
-" Pdf
-filextype *.pdf qpdfview %c &, apvlv %c, xpdf %c
-fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " TuDu files
 filetype *.tudu tudu -f %c
@@ -491,7 +466,7 @@ nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
-nnoremap <S-F4> :touch<SPACE>
+nnoremap <s-f4> :touch<space>
 nnoremap <s-f6> cw<c-a>
 nnoremap <a-f1> <c-w>h:volumes<cr>
 nnoremap <a-f2> <c-w>l:volumes<cr>

@@ -35,10 +35,7 @@ set nofollowlinks
 " With this option turned on you can run partially entered commands with
 " unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
 
-" set fastrun
-
-" Run executable file rather than open them for editing
-set runexec
+set fastrun
 
 " Natural sort of (version) numbers within text.
 
@@ -301,10 +298,6 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ shotwell,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 
-" Pdf
-filextype *.pdf qpdfview %c &, apvlv %c, xpdf %c
-fileviewer *.pdf pdftotext -nopgbrk %c -
-
 " EPS
 filextype *.eps
         \ {View in gimp}
@@ -362,9 +355,13 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx start %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
+
+" Pdf
+filextype *.pdf qpdfview %c &, apvlv %c, xpdf %c
+fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " TuDu files
 filetype *.tudu tudu -f %c

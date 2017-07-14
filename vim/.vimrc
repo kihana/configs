@@ -39,6 +39,8 @@ call plug#begin('~/.vim/plugged')
 "
 call plug#end()
 
+" set utf8 encoding
+set encoding=utf-8
 
 " show line number
 set nu

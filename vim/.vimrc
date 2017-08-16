@@ -23,6 +23,9 @@ call plug#begin('~/.vim/plugged')
  Plug 'scrooloose/nerdtree'
  Plug 'xolox/vim-misc'
  Plug 'xolox/vim-session'
+
+" Automatic keyboard layout switching in insert mode 
+ Plug 'lyokha/vim-xkbswitch'
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 "
 " " Using git URL
@@ -81,14 +84,11 @@ set whichwrap+=<,>,[,]
 " set key toggle of paste mode
 set pastetoggle=<F7>
 
-" set switching language
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
 if has("gui_running")
   " hide toolbar
   set guioptions-=T
   " set font
-  if has("gui_gtk2")
+  if has("gui_gtk3")
     set guifont=Hack\ 9
   else
     set guifont=Hack:h9
@@ -116,6 +116,7 @@ let g:screen_size_by_vim_instance = 1
 if has("gui_running")
   nmap  <silent>  <S-Insert>  "+gP
   imap  <silent>  <S-Insert>  <Esc>"+gpa
+  vmap  <silent>  <C-Insert> "+y
 endif
 
 "------------------------- Change window--------------------------
@@ -141,6 +142,8 @@ vnoremap <silent> <C-s> <c-c>:update<CR>
 "*                       Plugins settings                        *
 "*****************************************************************
 
+"---------------------- Vim-xkbswitch ----------------------------
+let g:XkbSwitchEnabled = 1
 
 "------------------------- Emmet ---------------------------------
  let g:user_emmet_leader_key='<C-G>'

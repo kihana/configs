@@ -24,6 +24,9 @@ set vicmd=vim
 
 set trash
 
+" Show progress bar during copy/move operation
+set syscalls
+
 " This is how many directories to store in the directory history.
 
 set history=100
@@ -53,7 +56,7 @@ set novimhelp
 " If you would like to run an executable file when you
 " press return on the file name set this.
 
-set runexec
+set norunexec
 
 " Use KiB, MiB, ... suffixes instead of K, M, ... for size.
 

@@ -266,18 +266,6 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ tar -xf %c,
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
-" Image
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in lximage-qt}
-        \ lximage-qt %c > /dev/null 2>&1 &,
-        \ {View in sxiv}
-        \ sxiv,
-        \ {View in gpicview}
-        \ gpicview %c,
-        \ {View in shotwell}
-        \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
-
 " EPS
 filextype *.eps
         \ {View in gimp}
@@ -346,32 +334,49 @@ if has('x11')
           \ {Open with uzbl}
           \ uzbl-browser %f %i &,
   filetype *.html,*.htm links, lynx
+
+  " Image
+  filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+          \ {View in lximage-qt}
+          \ lximage-qt %c > /dev/null 2>&1 &,
+          \ {View in sxiv}
+          \ sxiv,
+          \ {View in gpicview}
+          \ gpicview %c,
+          \ {View in shotwell}
+          \ shotwell,
+  fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 else
   " Pdf
   filextype *.pdf
           \ {Open with Foxid Reader}
-          \ "C:\\Program Files (x86)\\Foxit Software\\Foxit Reader\\FoxitReader.exe" %f &,
-
-  fileviewer *.pdf pdftotext -nopgbrk %c -
-
+          \ "C:\\Program Files (x86)\\Foxit Software\\Foxit Reader\\FoxitReader.exe" %"c &,
 
   " Office files
   filextype *.odt,*.doc,*.docx
           \ {Open with word}
-          \ "C:\\Program Files\\Microsoft Office\\Office16\\WINWORD.EXE" %f &,
-  
-  fileviewer *.doc catdoc %c
-  fileviewer *.docx, docx2txt.pl %f -
-
+          \ "C:\\Program Files\\Microsoft Office\\Office16\\WINWORD.EXE" %"c &,
 
   " Web
   filextype *.html,*.htm
           \ {Open with firefox}
-          \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %f &,
-
+          \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
 
   " Visual Studio Solution
-  filextype *.sln devenv.com %f &
+  filextype *.sln 
+          \ {Open with Visual Studio}
+          \ devenv.com %"c &,
+
+  " Image
+  filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+          \ {Open in FastStone Image Viewer}
+          \ "C:\\Program Files (x86)\\FastStone Image Viewer\\FSViewer.exe" %"c &,
+
+  " Frame Maker files
+  filextype *.fm
+          \ {Open Adobe FrameMaker 10}
+          \ "C:\\Program Files (x86)\\Adobe\\AdobeFrameMaker10\\FrameMaker.exe" %"c &,
+
 endif
 
 " Syntax highlighting in preview

@@ -320,9 +320,11 @@ filextype */
         \ {View in thunar}
         \ Thunar %f &,
 
-if has('x11')
+if has('unix')
   " Pdf
-  filextype *.pdf qpdfview %c &, apvlv %c, xpdf %c
+  filextype *.pdf
+          \ {Open with qpdfview}
+          \ qpdfview %c &,
   fileviewer *.pdf pdftotext -nopgbrk %c -
 
   " Web

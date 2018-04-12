@@ -288,11 +288,6 @@ filetype *.rar
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
 fileviewer *.rar unrar v %c
 
-" IsoMount
-filetype *.iso
-       \ {Mount with fuseiso}
-       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
-
 " SshMount
 filetype *.ssh
        \ {Mount with sshfs}
@@ -321,6 +316,11 @@ filextype */
         \ Thunar %f &,
 
 if has('unix')
+  " IsoMount
+  filetype *.iso
+         \ {Mount with fuseiso}
+         \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+
   " Pdf
   filextype *.pdf
           \ {Open with qpdfview}
@@ -349,6 +349,11 @@ if has('unix')
           \ shotwell,
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 else
+  " IsoMount
+  filetype *.iso
+         \ {Mount with powershell}
+         \ powershell.exe "Mount-DiskImage -ImagePath \"%c:p\"" &,
+
   " Pdf
   filextype *.pdf
           \ {Open with Foxid Reader}

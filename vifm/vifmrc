@@ -370,7 +370,7 @@ else
           \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
 
   " Visual Studio Solution
-  filextype *.sln 
+  filextype *.sln
           \ {Open with Visual Studio}
           \ devenv.com %"c &,
 
@@ -496,9 +496,7 @@ nnoremap <f3> :!less %f<cr>
 "nnoremap <f4> :edit<cr>
 nnoremap <f4> :!gvim --remote-tab-silent %f &<cr>
 nnoremap <f5> :copy<cr>
-nnoremap <c-f5> :copy!<cr>
 nnoremap <f6> :move<cr>
-nnoremap <c-f6> :move!<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 

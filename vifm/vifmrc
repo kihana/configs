@@ -476,9 +476,9 @@ nnoremap yn :!echo %c%i|clip<cr>
 nnoremap yp :!echo %c:p%i|clip<cr>
 
 " Mappings for faster renaming
-" nnoremap I cw<c-a>
-" nnoremap cc cw<c-u>
-" nnoremap A cw
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
 
 " Open console in current directory
 nnoremap ,t :!xterm &<cr>
@@ -501,7 +501,6 @@ nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
 nnoremap <s-f4> :touch<space>
-nnoremap <s-f6> cw<c-a>
 nnoremap <a-f1> <c-w>h:volumes<cr>
 nnoremap <a-f2> <c-w>l:volumes<cr>
 nnoremap <F11>s :sync<cr>

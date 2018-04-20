@@ -368,6 +368,11 @@ else
   filextype *.html,*.htm
           \ {Open with firefox}
           \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
+  
+  " HTML Help
+  filextype *.chm
+          \ {Open with HTML help}
+          \ hh.exe %"c &,
 
   " Visual Studio Solution
   filextype *.sln

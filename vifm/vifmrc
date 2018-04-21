@@ -368,7 +368,7 @@ else
   filextype *.html,*.htm
           \ {Open with firefox}
           \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
-  
+
   " HTML Help
   filextype *.chm
           \ {Open with HTML help}
@@ -500,8 +500,8 @@ nnoremap ,w :set wrap!<cr>
 nnoremap <f3> :!less %f<cr>
 "nnoremap <f4> :edit<cr>
 nnoremap <f4> :!gvim --remote-tab-silent %f &<cr>
-nnoremap <f5> :copy<cr>
-nnoremap <f6> :move<cr>
+nnoremap <f5> yy<space>p<space>
+nnoremap <f6> yy<space>P<space>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 

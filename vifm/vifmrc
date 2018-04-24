@@ -349,7 +349,12 @@ if has('unix')
           \ shotwell,
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 else
-  " IsoMount
+  " Msi
+  filetype *.msi
+         \ {Execute with msiexec}
+         \ msiexec.exe /i %"c:p &,
+
+  " Iso
   filetype *.iso
          \ {Mount with powershell}
          \ powershell.exe "Mount-DiskImage -ImagePath \"%c:p\"" &,
@@ -368,7 +373,7 @@ else
   filextype *.html,*.htm
           \ {Open with firefox}
           \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
-
+  
   " HTML Help
   filextype *.chm
           \ {Open with HTML help}

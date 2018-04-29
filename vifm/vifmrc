@@ -373,7 +373,7 @@ else
   filextype *.html,*.htm
           \ {Open with firefox}
           \ "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" %"c &,
-  
+
   " HTML Help
   filextype *.chm
           \ {Open with HTML help}
@@ -479,11 +479,19 @@ nnoremap O :!gvim %f<cr>
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
 
-" yank current item name without path to Windows clipboard
-nnoremap yn :!echo %c%i|clip<cr>
+if has('unix')
+  " yank current item name without path to X clipboard
+  nnoremap yn :!echo -n %c | xclip -selection "clipboard" %i<cr>
 
-" yank path to current item to Windows clipboard with forward slashes
-nnoremap yp :!echo %c:p%i|clip<cr>
+  " yank path to current item to X clipboard
+  nnoremap yp :!echo -n %c:p | xclip -selection "clipboard" %i<cr>
+else
+  " yank current item name without path to Windows clipboard
+  nnoremap yn :!echo %c%i|clip<cr>
+
+  " yank path to current item to Windows clipboard with forward slashes
+  nnoremap yp :!echo %c:p%i|clip<cr>
+endif
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>

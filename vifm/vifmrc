@@ -349,6 +349,10 @@ if has('unix')
           \ shotwell,
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 else
+  " Vmi
+  filetype *.vmi
+         \ {Execute with VPI Design Suite}
+         \ "c:\\Program Files\\VPI\\VPIdesignSuite 10.0\\bin\\pde.exe" %"c:p &,
   " Msi
   filetype *.msi
          \ {Execute with msiexec}
@@ -368,6 +372,10 @@ else
   filextype *.odt,*.doc,*.docx
           \ {Open with word}
           \ "C:\\Program Files\\Microsoft Office\\Office16\\WINWORD.EXE" %"c &,
+
+  filextype *.pptx
+          \ {Open with PowerPoint}
+          \ "C:\\Program Files\\Microsoft Office\\Office16\\POWERPNT.EXE" %"c &,
 
   " Web
   filextype *.html,*.htm

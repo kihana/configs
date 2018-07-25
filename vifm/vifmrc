@@ -349,6 +349,10 @@ if has('unix')
           \ shotwell,
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
 else
+  " Vmi
+  filetype *.vmi
+         \ {Execute with VPI Design Suite}
+         \ "c:\\Program Files\\VPI\\VPIdesignSuite 10.0\\bin\\pde.exe" %"c:p &,
   " Msi
   filetype *.msi
          \ {Execute with msiexec}
@@ -368,6 +372,10 @@ else
   filextype *.odt,*.doc,*.docx
           \ {Open with word}
           \ "C:\\Program Files\\Microsoft Office\\Office16\\WINWORD.EXE" %"c &,
+
+  filextype *.pptx
+          \ {Open with PowerPoint}
+          \ "C:\\Program Files\\Microsoft Office\\Office16\\POWERPNT.EXE" %"c &,
 
   " Web
   filextype *.html,*.htm
@@ -487,10 +495,10 @@ if has('unix')
   nnoremap yp :!echo -n %c:p | xclip -selection "clipboard" %i<cr>
 else
   " yank current item name without path to Windows clipboard
-  nnoremap yn :!echo %c%i|clip<cr>
+  nnoremap yn :!echo|set /p=%"c%i|clip<cr>
 
   " yank path to current item to Windows clipboard with forward slashes
-  nnoremap yp :!echo %c:p%i|clip<cr>
+  nnoremap yp :!echo|set /p=%"c:p%i|clip<cr>
 endif
 
 " Mappings for faster renaming

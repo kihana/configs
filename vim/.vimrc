@@ -23,6 +23,11 @@ call plug#begin('~/.vim/plugged')
  Plug 'scrooloose/nerdtree'
  Plug 'xolox/vim-misc'
  Plug 'xolox/vim-session'
+ Plug 'majutsushi/tagbar'
+
+ " Snippets
+ Plug 'SirVer/ultisnips'
+ Plug 'honza/vim-snippets'
 
 " Automatic keyboard layout switching in insert mode 
  Plug 'lyokha/vim-xkbswitch'
@@ -95,6 +100,11 @@ if has("gui_running")
   endif
 endif
 
+" Enable SELECT mode by pressed Shift key and movement command
+set selectmode=key
+set keymodel=startsel
+
+
 "*****************************************************************
 "*                      Own script settings                      *
 "*****************************************************************
@@ -112,10 +122,11 @@ let g:screen_size_by_vim_instance = 1
 "*                           Mappings                            *
 "*****************************************************************
 
-"------------------------- Paste from clipboard ------------------
+"------------------------- Copy and Paste from clipboard ------------------
 if has("gui_running")
   nmap  <silent>  <S-Insert>  "+gP
   imap  <silent>  <S-Insert>  <Esc>"+gpa
+  vmap  <silent>  <S-Insert> "+gpa
   vmap  <silent>  <C-Insert> "+y
 endif
 
@@ -159,6 +170,7 @@ vmap <silent> <C-n>t <Esc>:NERDTreeToggle<CR>
 
 "--------------------- YouCompleteMe -----------------------------
 nnoremap <silent> <C-b> :YcmCompleter GoTo<CR>
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 "------------------------- Airline -------------------------------
 let g:airline_theme = 'jellybeans'
@@ -166,4 +178,10 @@ let g:airline_powerline_fonts = 1
 
 
 "----------------------- Vim-sessions ----------------------------
-let g:session_autosave = 'no'
+let g:session_autosave = 'yes'
+
+"------------------------ UltiSnips ------------------------------
+let g:UltiSnipsExpandTrigger="<c-t>"
+
+"------------------------ UltiSnips ------------------------------
+nmap <F8> :TagbarToggle<CR>

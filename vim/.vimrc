@@ -53,6 +53,9 @@ set encoding=utf-8
 " show line number
 set nu
 
+" don't split word
+set linebreak
+
 " set highlighting all search matches
 set hlsearch
 
@@ -94,9 +97,9 @@ if has("gui_running")
   set guioptions-=T
   " set font
   if has("gui_gtk3")
-    set guifont=Hack\ 9
+    set guifont=Hack\ Nerd\ Font\ Mono\ 9
   else
-    set guifont=Hack:h9
+    set guifont=Hack Nerd Font Mono:h9
   endif
 endif
 

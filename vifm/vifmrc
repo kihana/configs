@@ -493,8 +493,7 @@ if has('unix')
   nnoremap yn :!echo -n %c | xclip -selection "clipboard" %i<cr>
 
   " yank path to current item to X clipboard
-  " nnoremap yp :!echo -n %c:p | xclip -selection "clipboard" %i<cr>
-  nnoremap yp :!echo -n %c:p | xclip %i<cr>
+  nnoremap yp :!echo -n %c:p | xclip -selection "clipboard" %i<cr>
 else
   " yank current item name without path to Windows clipboard
   nnoremap yn :!echo|set /p=%"c%i|clip<cr>

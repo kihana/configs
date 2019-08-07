@@ -533,7 +533,13 @@ nnoremap <a-f1> <c-w>h:volumes<cr>
 nnoremap <a-f2> <c-w>l:volumes<cr>
 " Change the other pane to the current pane directory
 nnoremap go :sync<cr>
- 
+
+
+" ----------------------------------Bookmark------------------------------------
+" display all bookmarks
+nnoremap bl :bmarks<cr>
+" add current directory to bookmarks
+nnoremap ba :bmark<space>
 " ------------------------------------------------------------------------------
 
 " Various customization examples

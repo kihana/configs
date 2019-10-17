@@ -183,13 +183,6 @@ filextype *.ps,*.eps,*.ps.gz
         \ {View in gv}
         \ gv %c %i &,
 
-" Djvu
-filextype *.djvu
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
-
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ {Play using ffplay}
@@ -335,6 +328,16 @@ if has('unix')
           \ apvlv %c,
           \ xpdf %c
   fileviewer *.pdf pdftotext -nopgbrk %c -
+
+  " Djvu
+  filextype *.djvu
+          \ {View in qpdfview}
+          \ qpdfview --unique --quiet %c %i &,
+          \ {View in zathura}
+          \ zathura %f,
+          \ {View in apvlv}
+          \ apvlv %f,
+
 
   " Office files
   filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &

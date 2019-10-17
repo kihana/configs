@@ -464,7 +464,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " Configuring both panels
 
 " Customize view columns
-set viewcolumns=*{name},{ext},7{size},16{mtime}.
+set viewcolumns=-{name}..,10{ext},7{size},16{mtime}.
 
 " Filter-out build and temporary files
 "

@@ -367,6 +367,11 @@ if has('unix')
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
            \ convert -identify %f -verbose /dev/null
 else
+  " Dll
+  filetype *.dll
+         \ {Execute with Dependency Walker}
+         \ "d:\\portable\\depends\\depends.exe" %"c:p &,
+
   " Vmi
   filetype *.vmi
          \ {Execute with VPI Design Suite}

@@ -322,8 +322,8 @@ if has('unix')
 
   " Pdf
   filextype *.pdf
-          \ {View in qpdfview}
-          \ qpdfview --unique --quiet %c %i &,
+          \ {Open with Okular}
+          \ okular %c %i &,
           \ zathura %c %i &,
           \ apvlv %c,
           \ xpdf %c
@@ -520,7 +520,7 @@ nnoremap gb :file &<cr>l
 
 if has('unix')
   " yank current item name without path to X clipboard
-  nnoremap yn :!echo -n %c | xclip -selection "clipboard" %i<cr>
+  nnoremap yn :!echo -n %c | xclip -selection "clipboard"<cr>
 
   " yank path to current item to X clipboard
   nnoremap yp :!echo -n %c:p | xclip -selection "clipboard" %i<cr>

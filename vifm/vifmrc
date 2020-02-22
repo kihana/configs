@@ -255,16 +255,6 @@ filetype *.asc
 filetype *.torrent ktorrent %f &
 fileviewer *.torrent dumptorrent -v %c
 
-" FuseZipMount
-filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ zip -sf %c | less,
-       \ {Extract here}
-       \ tar -xf %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
-
 " EPS
 filextype *.eps
         \ {View in gimp}
@@ -315,6 +305,16 @@ filextype */
         \ Thunar %f &,
 
 if has('unix')
+  " FuseZipMount
+  filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
+         \ {Mount with fuse-zip}
+         \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+         \ {View contents}
+         \ zip -sf %c | less,
+         \ {Extract here}
+         \ tar -xf %c,
+  fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
   " IsoMount
   filetype *.iso
          \ {Mount with fuseiso}
@@ -367,6 +367,17 @@ if has('unix')
   fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
            \ convert -identify %f -verbose /dev/null
 else
+  " FuseZipMount
+  filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
+         \ {Mount with fuse-zip}
+         \ FUSE_MOUNT|arch_mounter %SOURCE_FILE %DESTINATION_DIR,
+  "       \ FUSE_MOUNT|arch_mounter %SOURCE_FILE "d:/temp/arch",
+         \ {View contents}
+         \ zip -sf %c | less,
+         \ {Extract here}
+         \ tar -xf %c,
+  fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
   " Dll
   filetype *.dll
          \ {Execute with Dependency Walker}
@@ -388,8 +399,8 @@ else
 
   " Pdf
   filextype *.pdf
-          \ {Open with Foxid Reader}
-          \ "C:\\Program Files (x86)\\Foxit Software\\Foxit Reader\\FoxitReader.exe" %"c &,
+          \ {Open with Okular}
+          \ "c:\\Program Files\\Okular\\bin\\okular.exe" %"c &,
 
   " Office files
   filextype *.odt,*.doc,*.docx
@@ -414,7 +425,14 @@ else
   filextype *.sln
           \ {Open with Visual Studio}
           \ devenv.com %"c &,
+          \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.com" %"c &,
 
+  " Visual Studio Project
+  filextype *.vcxproj
+          \ {Open with Visual Studio}
+          \ devenv.com %"c &,
+          \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.com" %"c &,
+  
   " Image
   filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
           \ {Open in FastStone Image Viewer}

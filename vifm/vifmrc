@@ -428,12 +428,14 @@ else
           \ {Open with Visual Studio}
           \ devenv.com %"c &,
           \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.com" %"c &,
+          \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\devenv.com" %"c &,
 
   " Visual Studio Project
   filextype *.vcxproj
           \ {Open with Visual Studio}
           \ devenv.com %"c &,
           \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.com" %"c &,
+          \ "c:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\devenv.com" %"c &,
   
   " Image
   filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm

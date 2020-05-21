@@ -4,9 +4,12 @@ set tabstop=2
 set shiftwidth=2
 set smarttab
 
-" Set font
+" Setting for vim version with GUI
 if has('gui_running')
+  " Set font
   set guifont=Hack:h9:cRUSSIAN:qDRAFT
+  " Remove toolbar
+  set guioptions-=T
 endif
 
 " Enable syntax highlighting
@@ -17,3 +20,6 @@ set whichwrap+=<,>,[,]
 
 " Enable removing characters through the lines by <BS> and <Del> keys
 set backspace=indent,eol,start
+
+" Enable showing line number
+set nu
